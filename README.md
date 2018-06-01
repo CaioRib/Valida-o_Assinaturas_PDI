@@ -13,8 +13,8 @@ O problema de interesse é a validação de assinaturas manuscritas por meio de 
 O objetivo desse projeto é desenvolver um programa capaz de realizar o pré-processamento de imagens de assinaturas, criando assim um banco de dados que será utilizado como conjunto de treinamento do sistema Para o treinamento, será definido um conjunto de características a serem extraídas de cada imagem. Posteriormente, o programa deverá ser capaz de receber uma nova imagem de assinatura e identificar se ela pertence ao assinante ou se é uma falsificação.
 	
 # Etapas:
-Criação do banco de dados.
-Pré-processamento das imagens, para facilitar a análise dos padrões.
-Definição do reconhecimento de padrões para descrição e  classificação.
-Treinamento do sistema.
-Verificação dos resultados obtidos.
+- Criação do banco de dados.
+- Pré-processamento das imagens, para facilitar a análise dos padrões.
+- Definição do reconhecimento de padrões para descrição e  classificação.
+- Treinamento do sistema.
+- Verificação dos resultados obtidos.
