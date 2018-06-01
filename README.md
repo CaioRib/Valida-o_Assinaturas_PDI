@@ -1,8 +1,8 @@
 # Validacao_Assinaturas_PDI
 ICMC/USP - Processamento de Imagens - SCC0251
 
-Vinicius Torres Dutra Maia da Costa	- nUSP 10262781
-Caio Abreu de Oliveira Ribeiro		  - nUSP 10262839
+- Vinicius Torres Dutra Maia da Costa	- nUSP 10262781
+- Caio Abreu de Oliveira Ribeiro		  - nUSP 10262839
 
 Área do projeto: Aprendizado de Características.
 
