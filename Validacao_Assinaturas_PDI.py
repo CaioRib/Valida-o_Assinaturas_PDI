@@ -11,7 +11,7 @@ def RGBtoGrayscale(RGB):
 	return ((gray/np.max(gray)) * 255).astype(np.uint8);
 
 #Funcao para transformar imagem RGB em uma imagem binaria,
-#levando em consideracao os 75% pixels mais significativos
+#levando em consideracao os 75% pixels mais significativos 
 def RGBtoBinary(OrImg):
 
 	GrayImg = RGBtoGrayscale(OrImg)
@@ -28,7 +28,7 @@ OrImg = imageio.imread(OrImgName)
 
 BinImage = RGBtoBinary(OrImg)
 
-print(BinImage)
-imageio.imwrite("BinNC.png", BinImage)
-BinImage = (np.equal(BinImage, 1) * 255).astype(np.uint8)
-imageio.imwrite("Bin.png", BinImage)
+#print(BinImage)
+#imageio.imwrite("BinNC.png", BinImage)
+#BinImage = (np.equal(BinImage, 1) * 255).astype(np.uint8)
+#imageio.imwrite("Bin.png", BinImage)
