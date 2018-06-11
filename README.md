@@ -20,8 +20,8 @@ O objetivo desse projeto é desenvolver um programa capaz de realizar o pré-pro
 <img src="https://i.imgur.com/PLVlIud.jpg" width="300" height="100" title="Signature 2">
 
 # Métodos:
- -1 - Mudança de tipo da imagem rgb de entrada para binária, em que os pixels de valor 1 representam a assinatura e de valor 0 representam o fundo. 
- -2 - Pré-processamento da imagem binária utilizando o método da esqueletização para reduzir a representação dos caracteres da assinatura para cadeias simples de largura de um pixel, porém preservando o restante de características relevantes para a classificação. Implementou-se o algoritmo de thinning, o qual utiliza o conceito de erosão morfológica de contornos iterativamente até que a largura dos traços reduza para um pixel.
--3 - Extração de características por meio da análise da orientação dos traços.
--4 - Treinamento do sistema utilizando uma rede convolucional
+- 1 - Mudança de tipo da imagem rgb de entrada para binária, em que os pixels de valor 1 representam a assinatura e de valor 0 representam o fundo. 
+- 2 - Pré-processamento da imagem binária utilizando o método da esqueletização para reduzir a representação dos caracteres da assinatura para cadeias simples de largura de um pixel, porém preservando o restante de características relevantes para a classificação. Implementou-se o algoritmo de thinning, o qual utiliza o conceito de erosão morfológica de contornos iterativamente até que a largura dos traços reduza para um pixel.
+- 3 - Extração de características por meio da análise da orientação dos traços.
+- 4 - Treinamento do sistema utilizando uma rede convolucional
  
