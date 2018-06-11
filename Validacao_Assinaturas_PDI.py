@@ -66,7 +66,6 @@ BinImage = RGBtoBinary(InputImg)
 
 BinImage = thinning(BinImage)
 
-print(np.max(BinImage))
 imageio.imwrite("BinNC.png", BinImage)
 BinImage = (np.equal(BinImage, 1) * 255).astype(np.uint8)
 imageio.imwrite("Bin.png", BinImage)
