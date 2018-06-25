@@ -41,7 +41,7 @@ def thinning(Img):
 	flag = True
 
 	#realiza o algoritmo enquanto ainda houverem pixels a serem removidos
-	while(flag):	
+	while(flag):
 		flag = False
 		mask = np.ones((x + 2, y + 2), dtype=bool)
 
@@ -56,15 +56,124 @@ def thinning(Img):
 						flag = True
 		imgPad = np.multiply(mask, imgPad)
 
-	Img = imgPad[1:x, 1:y]
-	return Img
+	return imgPad
 
+def extract_orientation(img):
+
+	x,y = np.shape(img)
+	Ix = np.zeros((x, y), dtype=np.uint8)
+	Iy = np.zeros((x, y), dtype=np.uint8)
+	Id = np.zeros((x, y), dtype=np.uint8)
+	Idi = np.zeros((x, y), dtype=np.uint8)
+	npixels = 0
+	for i in np.arange(1, x-1):
+		for j in np.arange(1, y-1):
+			if img[i, j] == 1:
+				npixels += 1
+				if img[i - 1, j] == 1:
+					Ix[i, j] = 1
+				if img[i, j - 1] == 1:
+					Iy[i, j] = 1
+				if img[i - 1, j + 1] == 1:
+					Id[i, j] = 1
+				if img[i - 1, j - 1] == 1:
+					Idi[i, j] = 1
+
+	res = np.zeros(4, dtype=np.float32)
+	res[0] = np.sum(Ix)/npixels
+	res[1] = np.sum(Iy)/npixels
+	res[2] = np.sum(Id)/npixels
+	res[3] = np.sum(Idi)/npixels
+
+	return res
+
+def statistical_analysis(orientation, j):
+	x = np.zeros(j, dtype=np.float32)
+	y = np.zeros(j, dtype=np.float32)
+	d = np.zeros(j, dtype=np.float32)
+	di = np.zeros(j, dtype=np.float32)
+
+	z = np.zeros(8, dtype=np.float32)
+
+	for i in range(j):
+		x[i]  = orientation[i][0]
+		y[i]  = orientation[i][1]
+		d[i]  = orientation[i][2]
+		di[i] = orientation[i][3]
+
+	z[0] = np.mean(x)
+	z[1] = np.mean(y)
+	z[2] = np.mean(d)
+	z[3] = np.mean(di)
+
+	z[4] = np.std(x)
+	z[5] = np.std(y)
+	z[6] = np.std(d)
+	z[7] = np.std(di)
+
+	return z
+
+def compare(orientation, z):
+	flag = 0
+	if orientation[0] <= z[0] + z[4]/2 and orientation[0] >= z[0] - z[4]/2:
+		flag += 1
+	if orientation[1] <= z[1] + z[5]/2 and orientation[1] >= z[1] - z[5]/2:
+		flag += 1
+	if orientation[2] <= z[2] + z[6] and orientation[2] >= z[2] - z[6]:
+		flag += 1
+	if orientation[3] <= z[3] + z[7] and orientation[3] >= z[3] - z[7]:
+		flag += 1
+
+	if flag > 2:
+		print("Assinatura Valida.")
+	elif flag < 2:
+		print("Assinatura Invalida.")
+	else:
+		print("Assinatura Indefinida.")
+
+
+#MAIN
 InputImgName = str(input()).strip("\n\r")
-InputImg = imageio.imread(InputImgName)
+i = int(input())
+name = str(input()).strip("\n\r")
 
-BinImage = RGBtoBinary(InputImg)
+if i > 0:
+	orientation = []
+	for k in range(i):
+		imgName = InputImgName + " (" + str(k) +")" + ".jpeg"
+		InputImg = imageio.imread(imgName)
+		BinImage = RGBtoBinary(InputImg)
+		ThinImage = thinning(BinImage)
+		orientation.append(extract_orientation(ThinImage))
+	newZ = statistical_analysis(orientation, i)
 
-BinImage = thinning(BinImage)
+	z = np.load("escritores.npy")
+	nameList = np.load("nomeEscritores.npy")
 
-BinImage = (np.equal(BinImage, 1) * 255).astype(np.uint8)
-imageio.imwrite("Bin.png", BinImage)
+	z = np.append(z, newZ)
+	nameList = np.append(nameList, name)
+
+	np.save("escritores.npy", z)
+	np.save("nomeEscritores", nameList)
+
+else:
+	InputImg = imageio.imread(InputImgName)
+	BinImage = RGBtoBinary(InputImg)
+	ThinImage = thinning(BinImage)
+	orientation = extract_orientation(ThinImage)
+
+	z = np.load("escritores.npy")
+	nameList = np.load("nomeEscritores.npy")
+
+	tam = np.shape(nameList)[0] - 1
+	while(tam > 0 and nameList[tam] != name):
+		tam -= 1
+
+	if(nameList[tam] == name):
+		compare(orientation, z[tam*8:tam*8+8])
+
+	else:
+		print("Escritor nao presente no conjunto de dados.")
+	# 
+	# print(z[tam*8:tam*8+8])
+	# print(orientation)
