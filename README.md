@@ -2,8 +2,8 @@
 ICMC/USP - Processamento de Imagens - SCC0251
 
 Alunos:
-	- Vinicius Torres Dutra Maia da Costa	- nUSP 10262781
-	- Caio Abreu de Oliveira Ribeiro	- nUSP 10262839
+- Vinicius Torres Dutra Maia da Costa	- nUSP 10262781
+- Caio Abreu de Oliveira Ribeiro	- nUSP 10262839
 
 Área/Tema do projeto: Aprendizado de Características.
 
@@ -23,5 +23,7 @@ O objetivo desse projeto é desenvolver um programa capaz de realizar o pré-pro
 - 1 - Mudança de tipo da imagem rgb de entrada para binária, em que os pixels de valor 1 representam a assinatura e de valor 0 representam o fundo. 
 - 2 - Pré-processamento da imagem binária utilizando o método da esqueletização para reduzir a representação dos caracteres da assinatura para cadeias simples de largura de um pixel, porém preservando o restante de características relevantes para a classificação. Implementou-se o algoritmo de thinning, o qual utiliza o conceito de erosão morfológica de contornos iterativamente até que a largura dos traços reduza para um pixel.
 - 3 - Extração de características por meio da análise da orientação dos traços.
-- 4 - Treinamento do sistema utilizando uma rede convolucional
+- 4 - Treinamento do sistema por análise estatística.
+- 5 - Teste e verificação.
+
  
