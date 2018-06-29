@@ -15,11 +15,11 @@ O objetivo desse projeto é desenvolver um programa capaz de realizar o pré-pro
 	
 # Exemplo de imagem de entrada:
 
-<img src="https://imgur.com/a/w3G3XT3" width="250" height="100" title="Signature 1">
+<img src="https://i.imgur.com/ky4IVqr.jpg" width="250" height="100" title="Signature 1">
 
-<img src="https://imgur.com/ky4IVqr" width="300" height="100" title="Signature 2">
+<img src="https://i.imgur.com/gQGdJAn.jpg" width="300" height="100" title="Signature 2">
 
-<img src="https://imgur.com/gQGdJAn" width="300" height="100" title="Signature 3">
+<img src="https://i.imgur.com/sF4XQEI.jpg" width="300" height="100" title="Signature 3">
 
 # Métodos:
 - 1 - Mudança de tipo da imagem rgb de entrada para binária, em que os pixels de valor 1 representam a assinatura e de valor 0 representam o fundo. 
